@@ -1,0 +1,468 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>How to make Kalman filter library for 3rd order system</title><meta name="generator" content="MATLAB 9.1"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2017-04-06"><meta name="DC.source" content="MatlabCodeInCStyle3rd_generate.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>How to make Kalman filter library for 3rd order system</h1><!--introduction--><p>This note shows step by step to generate C code for kalman filter.</p><p>Matlab symbolic is used to simply kalman equations</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">State-Space representation of plan</a></li><li><a href="#2">State prediction</a></li><li><a href="#3">Variance of predicted states</a></li><li><a href="#4">Kalman gain updating</a></li><li><a href="#5">state updating</a></li><li><a href="#6">Variance of updated states</a></li><li><a href="#7">Modify to get C code</a></li><li><a href="#8">Results</a></li></ul></div><h2 id="1">State-Space representation of plan</h2><p>Matrix F3 has some zero and one elements.</p><p>And matrix h3 has fix value [1; 0; 0].</p><p>Then, we can reduce the calculation of kalman filter.</p><pre class="codeinput">syms <span class="string">F3_12</span> <span class="string">F3_13</span> <span class="string">F3_23</span> <span class="string">F3_33</span>
+F3 = [1 F3_12 F3_13; 0 1 F3_23; 0 0 F3_33]
+
+syms <span class="string">g3_11</span> <span class="string">g3_21</span> <span class="string">g3_31</span>
+g3 = [g3_11; g3_21; g3_31]
+
+h3 = [ 1 ; 0 ; 0]
+</pre><pre class="codeoutput"> 
+F3 =
+ 
+[ 1, F3_12, F3_13]
+[ 0,     1, F3_23]
+[ 0,     0, F3_33]
+ 
+ 
+g3 =
+ 
+ g3_11
+ g3_21
+ g3_31
+ 
+
+h3 =
+
+     1
+     0
+     0
+
+</pre><h2 id="2">State prediction</h2><pre class="codeinput">syms <span class="string">x3_upd_11</span> <span class="string">x3_upd_21</span> <span class="string">x3_upd_31</span>
+x3_upd = [x3_upd_11; x3_upd_21; x3_upd_31]
+
+syms <span class="string">u</span>
+x3_prd = F3*x3_upd + g3*u
+</pre><pre class="codeoutput"> 
+x3_upd =
+ 
+ x3_upd_11
+ x3_upd_21
+ x3_upd_31
+ 
+ 
+x3_prd =
+ 
+ x3_upd_11 + F3_12*x3_upd_21 + F3_13*x3_upd_31 + g3_11*u
+                   x3_upd_21 + F3_23*x3_upd_31 + g3_21*u
+                               F3_33*x3_upd_31 + g3_31*u
+ 
+</pre><h2 id="3">Variance of predicted states</h2><pre class="codeinput">syms <span class="string">P3_upd_11</span> <span class="string">P3_upd_12</span> <span class="string">P3_upd_13</span>
+syms <span class="string">P3_upd_21</span> <span class="string">P3_upd_22</span> <span class="string">P3_upd_23</span>
+syms <span class="string">P3_upd_31</span> <span class="string">P3_upd_32</span> <span class="string">P3_upd_33</span>
+
+P3_upd =   [P3_upd_11 P3_upd_12 P3_upd_13
+            P3_upd_21 P3_upd_22 P3_upd_23
+            P3_upd_31 P3_upd_32 P3_upd_33]
+
+syms <span class="string">Q3_11</span> <span class="string">Q3_22</span> <span class="string">Q3_33</span>
+Q3 = [Q3_11 0 0; 0 Q3_22 0; 0 0 Q3_33]
+
+P3_prd = F3*P3_upd*F3.' + Q3
+</pre><pre class="codeoutput"> 
+P3_upd =
+ 
+[ P3_upd_11, P3_upd_12, P3_upd_13]
+[ P3_upd_21, P3_upd_22, P3_upd_23]
+[ P3_upd_31, P3_upd_32, P3_upd_33]
+ 
+ 
+Q3 =
+ 
+[ Q3_11,     0,     0]
+[     0, Q3_22,     0]
+[     0,     0, Q3_33]
+ 
+ 
+P3_prd =
+ 
+[ P3_upd_11 + Q3_11 + F3_12*(P3_upd_12 + F3_12*P3_upd_22 + F3_13*P3_upd_32) + F3_13*(P3_upd_13 + F3_12*P3_upd_23 + F3_13*P3_upd_33) + F3_12*P3_upd_21 + F3_13*P3_upd_31, P3_upd_12 + F3_23*(P3_upd_13 + F3_12*P3_upd_23 + F3_13*P3_upd_33) + F3_12*P3_upd_22 + F3_13*P3_upd_32, F3_33*(P3_upd_13 + F3_12*P3_upd_23 + F3_13*P3_upd_33)]
+[                                                               P3_upd_21 + F3_12*(P3_upd_22 + F3_23*P3_upd_32) + F3_13*(P3_upd_23 + F3_23*P3_upd_33) + F3_23*P3_upd_31,                             P3_upd_22 + Q3_22 + F3_23*(P3_upd_23 + F3_23*P3_upd_33) + F3_23*P3_upd_32,                   F3_33*(P3_upd_23 + F3_23*P3_upd_33)]
+[                                                                                                       F3_33*P3_upd_31 + F3_12*F3_33*P3_upd_32 + F3_13*F3_33*P3_upd_33,                                                               F3_33*P3_upd_32 + F3_23*F3_33*P3_upd_33,                             P3_upd_33*F3_33^2 + Q3_33]
+ 
+</pre><h2 id="4">Kalman gain updating</h2><pre class="codeinput">syms <span class="string">P3_prd_11</span> <span class="string">P3_prd_12</span> <span class="string">P3_prd_13</span>
+syms <span class="string">P3_prd_21</span> <span class="string">P3_prd_22</span> <span class="string">P3_prd_23</span>
+syms <span class="string">P3_prd_31</span> <span class="string">P3_prd_32</span> <span class="string">P3_prd_33</span>
+
+P3_prd =   [P3_prd_11 P3_prd_12 P3_prd_13
+            P3_prd_21 P3_prd_22 P3_prd_23
+            P3_prd_31 P3_prd_32 P3_prd_33]
+
+A = P3_prd*h3;
+
+syms <span class="string">r3</span>
+B = h3.'*P3_prd*h3 + r3;
+
+klm_gain3 = A/B
+</pre><pre class="codeoutput"> 
+P3_prd =
+ 
+[ P3_prd_11, P3_prd_12, P3_prd_13]
+[ P3_prd_21, P3_prd_22, P3_prd_23]
+[ P3_prd_31, P3_prd_32, P3_prd_33]
+ 
+ 
+klm_gain3 =
+ 
+ P3_prd_11/(P3_prd_11 + r3)
+ P3_prd_21/(P3_prd_11 + r3)
+ P3_prd_31/(P3_prd_11 + r3)
+ 
+</pre><h2 id="5">state updating</h2><pre class="codeinput">syms <span class="string">x3_prd_11</span> <span class="string">x3_prd_21</span> <span class="string">x3_prd_31</span>
+x3_prd = [x3_prd_11; x3_prd_21; x3_prd_31]
+
+syms <span class="string">k3_11</span> <span class="string">k3_21</span> <span class="string">k3_31</span>
+k3 = [k3_11; k3_21; k3_31]
+
+syms <span class="string">y</span>
+
+x3_upd = x3_prd + k3*(y - h3.'*x3_prd)
+</pre><pre class="codeoutput"> 
+x3_prd =
+ 
+ x3_prd_11
+ x3_prd_21
+ x3_prd_31
+ 
+ 
+k3 =
+ 
+ k3_11
+ k3_21
+ k3_31
+ 
+ 
+x3_upd =
+ 
+ x3_prd_11 - k3_11*(x3_prd_11 - y)
+ x3_prd_21 - k3_21*(x3_prd_11 - y)
+ x3_prd_31 - k3_31*(x3_prd_11 - y)
+ 
+</pre><h2 id="6">Variance of updated states</h2><pre class="codeinput">P3_upd = eye(3)*P3_prd - k3*h3.'*P3_prd
+</pre><pre class="codeoutput"> 
+P3_upd =
+ 
+[ P3_prd_11 - P3_prd_11*k3_11, P3_prd_12 - P3_prd_12*k3_11, P3_prd_13 - P3_prd_13*k3_11]
+[ P3_prd_21 - P3_prd_11*k3_21, P3_prd_22 - P3_prd_12*k3_21, P3_prd_23 - P3_prd_13*k3_21]
+[ P3_prd_31 - P3_prd_11*k3_31, P3_prd_32 - P3_prd_12*k3_31, P3_prd_33 - P3_prd_13*k3_31]
+ 
+</pre><h2 id="7">Modify to get C code</h2><p>Copy the result aboved to a text editor. Then use replace function to change results to C indexing</p><pre>replace _11 by [0][0]</pre><pre>replace _12 by [0][1]</pre><pre>replace _13 by [0][2]</pre><pre>replace _21 by [1][0]</pre><pre>replace _22 by [1][1]</pre><pre>replace _23 by [1][2]</pre><pre>replace _31 by [2][0]</pre><pre>replace _32 by [2][1]</pre><pre>replace _33 by [2][2]</pre><h2 id="8">Results</h2><p>The results here were tested.</p><pre class="codeinput"><span class="comment">%{
+</span><span class="comment">states_prd3:
+</span><span class="comment">
+</span><span class="comment">x3_prd[0] = x3_upd[0] + F3[0][1]*x3_upd[1] + F3[0][2]*x3_upd[2] + g3[0]*u;
+</span><span class="comment">
+</span><span class="comment">x3_prd[1] = x3_upd[1] + F3[1][2]*x3_upd[2] + g3[1]*u;
+</span><span class="comment">
+</span><span class="comment">x3_prd[2] = F3[2][2]*x3_upd[2] + g3[2]*u;
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment"> covar_prd3:
+</span><span class="comment">
+</span><span class="comment"> P3_prd[0][0] = P3_upd[0][0] + Q3[0][0] + F3[0][1]*(P3_upd[0][1] + F3[0][1]*P3_upd[1][1] + F3[0][2]*P3_upd[2][1]) + F3[0][2]*(P3_upd[0][2] + F3[0][1]*P3_upd[1][2] + F3[0][2]*P3_upd[2][2]) + F3[0][1]*P3_upd[1][0] + F3[0][2]*P3_upd[2][0];
+</span><span class="comment">
+</span><span class="comment"> P3_prd[0][1] = P3_upd[0][1] + F3[1][2]*(P3_upd[0][2] + F3[0][1]*P3_upd[1][2] + F3[0][2]*P3_upd[2][2]) + F3[0][1]*P3_upd[1][1] + F3[0][2]*P3_upd[2][1];
+</span><span class="comment">
+</span><span class="comment"> P3_prd[0][2] = F3[2][2]*(P3_upd[0][2] + F3[0][1]*P3_upd[1][2] + F3[0][2]*P3_upd[2][2]);
+</span><span class="comment">
+</span><span class="comment"> P3_prd[1][0] = P3_upd[1][0] + F3[0][1]*(P3_upd[1][1] + F3[1][2]*P3_upd[2][1]) + F3[0][2]*(P3_upd[1][2] + F3[1][2]*P3_upd[2][2]) + F3[1][2]*P3_upd[2][0];
+</span><span class="comment">
+</span><span class="comment"> P3_prd[1][1] = P3_upd[1][1] + Q3[1][1] + F3[1][2]*(P3_upd[1][2] + F3[1][2]*P3_upd[2][2]) + F3[1][2]*P3_upd[2][1];
+</span><span class="comment">
+</span><span class="comment"> P3_prd[1][2] = F3[2][2]*(P3_upd[1][2] + F3[1][2]*P3_upd[2][2]);
+</span><span class="comment">
+</span><span class="comment"> P3_prd[2][0] = F3[2][2]*P3_upd[2][0] + F3[0][1]*F3[2][2]*P3_upd[2][1] + F3[0][2]*F3[2][2]*P3_upd[2][2];
+</span><span class="comment">
+</span><span class="comment"> P3_prd[2][1] = F3[2][2]*P3_upd[2][1] + F3[1][2]*F3[2][2]*P3_upd[2][2];
+</span><span class="comment">
+</span><span class="comment"> P3_prd[2][2] = P3_upd[2][2]*F3[2][2]*F3[2][2] + Q3[2][2];
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment"> kgain_upd3:
+</span><span class="comment">
+</span><span class="comment"> klm_gain3[0] = P3_prd[0][0]/(P3_prd[0][0] + r3);
+</span><span class="comment">
+</span><span class="comment"> klm_gain3[1] = P3_prd[1][0]/(P3_prd[0][0] + r3);
+</span><span class="comment">
+</span><span class="comment"> klm_gain3[2] = P3_prd[2][0]/(P3_prd[0][0] + r3);
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment"> states_upd3:
+</span><span class="comment">
+</span><span class="comment"> x3_upd[1] = x3_prd[1] - k3[1]*(x3_prd[0] - y);
+</span><span class="comment">
+</span><span class="comment"> x3_upd[2] = x3_prd[2] - k3[2]*(x3_prd[0] - y);
+</span><span class="comment">
+</span><span class="comment"> x3_upd[0] = x3_prd[0] - k3[0]*(x3_prd[0] - y);
+</span><span class="comment">
+</span><span class="comment">
+</span><span class="comment"> covar_upd3:
+</span><span class="comment">
+</span><span class="comment"> P3_upd[0][0] = P3_prd[0][0] - P3_prd[0][0]*k3[0];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[0][1] = P3_prd[0][1] - P3_prd[0][1]*k3[0];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[0][2] = P3_prd[0][2] - P3_prd[0][2]*k3[0];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[1][0] = P3_prd[1][0] - P3_prd[0][0]*k3[1];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[1][1] = P3_prd[1][1] - P3_prd[0][1]*k3[1];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[1][2] = P3_prd[1][2] - P3_prd[0][2]*k3[1];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[2][0] = P3_prd[2][0] - P3_prd[0][0]*k3[2];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[2][1] = P3_prd[2][1] - P3_prd[0][1]*k3[2];
+</span><span class="comment">
+</span><span class="comment"> P3_upd[2][2] = P3_prd[2][2] - P3_prd[0][2]*k3[2];
+</span><span class="comment">
+</span><span class="comment">%}</span>
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016b</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% How to make Kalman filter library for 3rd order system
+% This note shows step by step to generate C code for kalman filter.
+%
+% Matlab symbolic is used to simply kalman equations
+%
+%% State-Space representation of plan
+% Matrix F3 has some zero and one elements.
+%
+% And matrix h3 has fix value [1; 0; 0].
+%
+% Then, we can reduce the calculation of kalman filter.
+
+syms F3_12 F3_13 F3_23 F3_33
+F3 = [1 F3_12 F3_13; 0 1 F3_23; 0 0 F3_33]
+
+syms g3_11 g3_21 g3_31
+g3 = [g3_11; g3_21; g3_31]
+    
+h3 = [ 1 ; 0 ; 0]
+
+
+%% State prediction
+%
+syms x3_upd_11 x3_upd_21 x3_upd_31
+x3_upd = [x3_upd_11; x3_upd_21; x3_upd_31]
+
+syms u
+x3_prd = F3*x3_upd + g3*u
+
+
+%% Variance of predicted states
+%
+syms P3_upd_11 P3_upd_12 P3_upd_13 
+syms P3_upd_21 P3_upd_22 P3_upd_23
+syms P3_upd_31 P3_upd_32 P3_upd_33
+
+P3_upd =   [P3_upd_11 P3_upd_12 P3_upd_13
+            P3_upd_21 P3_upd_22 P3_upd_23
+            P3_upd_31 P3_upd_32 P3_upd_33]
+
+syms Q3_11 Q3_22 Q3_33
+Q3 = [Q3_11 0 0; 0 Q3_22 0; 0 0 Q3_33]
+
+P3_prd = F3*P3_upd*F3.' + Q3
+
+%% Kalman gain updating
+% 
+
+syms P3_prd_11 P3_prd_12 P3_prd_13 
+syms P3_prd_21 P3_prd_22 P3_prd_23
+syms P3_prd_31 P3_prd_32 P3_prd_33
+
+P3_prd =   [P3_prd_11 P3_prd_12 P3_prd_13
+            P3_prd_21 P3_prd_22 P3_prd_23
+            P3_prd_31 P3_prd_32 P3_prd_33]
+        
+A = P3_prd*h3;
+
+syms r3
+B = h3.'*P3_prd*h3 + r3;
+
+klm_gain3 = A/B
+ 
+%% state updating
+% 
+syms x3_prd_11 x3_prd_21 x3_prd_31
+x3_prd = [x3_prd_11; x3_prd_21; x3_prd_31]
+
+syms k3_11 k3_21 k3_31
+k3 = [k3_11; k3_21; k3_31]
+
+syms y
+
+x3_upd = x3_prd + k3*(y - h3.'*x3_prd)
+
+
+%% Variance of updated states
+% 
+
+P3_upd = eye(3)*P3_prd - k3*h3.'*P3_prd
+
+
+%% Modify to get C code
+% Copy the result aboved to a text editor. 
+% Then use replace function to change results to C indexing
+% 
+%  replace _11 by [0][0]
+% 
+%  replace _12 by [0][1]
+% 
+%  replace _13 by [0][2]
+% 
+%  replace _21 by [1][0]
+% 
+%  replace _22 by [1][1]
+% 
+%  replace _23 by [1][2]
+% 
+%  replace _31 by [2][0]
+% 
+%  replace _32 by [2][1]
+% 
+%  replace _33 by [2][2]
+
+%% Results
+%
+% The results here were tested.
+%
+
+%{
+states_prd3:
+
+x3_prd[0] = x3_upd[0] + F3[0][1]*x3_upd[1] + F3[0][2]*x3_upd[2] + g3[0]*u;
+
+x3_prd[1] = x3_upd[1] + F3[1][2]*x3_upd[2] + g3[1]*u;
+
+x3_prd[2] = F3[2][2]*x3_upd[2] + g3[2]*u;
+  
+
+ covar_prd3:
+
+ P3_prd[0][0] = P3_upd[0][0] + Q3[0][0] + F3[0][1]*(P3_upd[0][1] + F3[0][1]*P3_upd[1][1] + F3[0][2]*P3_upd[2][1]) + F3[0][2]*(P3_upd[0][2] + F3[0][1]*P3_upd[1][2] + F3[0][2]*P3_upd[2][2]) + F3[0][1]*P3_upd[1][0] + F3[0][2]*P3_upd[2][0];
+
+ P3_prd[0][1] = P3_upd[0][1] + F3[1][2]*(P3_upd[0][2] + F3[0][1]*P3_upd[1][2] + F3[0][2]*P3_upd[2][2]) + F3[0][1]*P3_upd[1][1] + F3[0][2]*P3_upd[2][1];
+
+ P3_prd[0][2] = F3[2][2]*(P3_upd[0][2] + F3[0][1]*P3_upd[1][2] + F3[0][2]*P3_upd[2][2]);
+
+ P3_prd[1][0] = P3_upd[1][0] + F3[0][1]*(P3_upd[1][1] + F3[1][2]*P3_upd[2][1]) + F3[0][2]*(P3_upd[1][2] + F3[1][2]*P3_upd[2][2]) + F3[1][2]*P3_upd[2][0];
+
+ P3_prd[1][1] = P3_upd[1][1] + Q3[1][1] + F3[1][2]*(P3_upd[1][2] + F3[1][2]*P3_upd[2][2]) + F3[1][2]*P3_upd[2][1];
+
+ P3_prd[1][2] = F3[2][2]*(P3_upd[1][2] + F3[1][2]*P3_upd[2][2]);
+
+ P3_prd[2][0] = F3[2][2]*P3_upd[2][0] + F3[0][1]*F3[2][2]*P3_upd[2][1] + F3[0][2]*F3[2][2]*P3_upd[2][2];
+
+ P3_prd[2][1] = F3[2][2]*P3_upd[2][1] + F3[1][2]*F3[2][2]*P3_upd[2][2];
+
+ P3_prd[2][2] = P3_upd[2][2]*F3[2][2]*F3[2][2] + Q3[2][2];
+
+
+ kgain_upd3:
+
+ klm_gain3[0] = P3_prd[0][0]/(P3_prd[0][0] + r3);
+
+ klm_gain3[1] = P3_prd[1][0]/(P3_prd[0][0] + r3);
+
+ klm_gain3[2] = P3_prd[2][0]/(P3_prd[0][0] + r3);
+
+
+ states_upd3:
+
+ x3_upd[1] = x3_prd[1] - k3[1]*(x3_prd[0] - y);
+
+ x3_upd[2] = x3_prd[2] - k3[2]*(x3_prd[0] - y);
+
+ x3_upd[0] = x3_prd[0] - k3[0]*(x3_prd[0] - y);
+
+
+ covar_upd3:
+
+ P3_upd[0][0] = P3_prd[0][0] - P3_prd[0][0]*k3[0];
+
+ P3_upd[0][1] = P3_prd[0][1] - P3_prd[0][1]*k3[0];
+
+ P3_upd[0][2] = P3_prd[0][2] - P3_prd[0][2]*k3[0];
+
+ P3_upd[1][0] = P3_prd[1][0] - P3_prd[0][0]*k3[1];
+
+ P3_upd[1][1] = P3_prd[1][1] - P3_prd[0][1]*k3[1];
+
+ P3_upd[1][2] = P3_prd[1][2] - P3_prd[0][2]*k3[1];
+
+ P3_upd[2][0] = P3_prd[2][0] - P3_prd[0][0]*k3[2];
+
+ P3_upd[2][1] = P3_prd[2][1] - P3_prd[0][1]*k3[2];
+
+ P3_upd[2][2] = P3_prd[2][2] - P3_prd[0][2]*k3[2];
+
+%}
+
+##### SOURCE END #####
+--></body></html>

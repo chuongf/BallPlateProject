@@ -1,0 +1,52 @@
+/**
+*  ***********************************************************************
+*  @file    Abstract.txt
+*  @author  Chuong Nguyen
+*  @brief   Firmware for ball plate system.
+*           Read file BallPlate_Info.pdf for more information
+*
+*  @version Beta: Kalman estimation using 2nd order and 3rd order.
+*                 State Space Controller.
+*                 GUI support.
+*  @version Reduced: Kalman estimation using 3rd order only.
+*                    Unit Degree input, pixel output only.
+*                    not support GUI.
+*
+* Peripherals & operating settings used:
+*
+*  Target   MCBSTM32           
+*  MCU      STM32F103RB       
+*
+*  Console-SIO for user-/debug-/status-messages to terminal:
+*  Console  USART1             
+*           115200Bd 8N1       
+*           TxD - PA9          
+*           RxD - PA10        
+*
+*  Aux-SIO for control related communication w image-processing PC:
+*  AuxSIO   USART2             
+*           115200Bd 8N1       
+*           TxD - PA2          
+*           RxD - PA3         
+*
+*  Timers to generate PWM signals for servo actuator control:
+*  X-Servo  TIM3 Channel1   or     TIM4 Channel3  (LED8)
+*  Y-Servo  TIM3 Channel2   or     TIM4 Channel4  (LED9)
+*
+*  Timer-Settings: 
+*           - PWM-mode         1 
+*           - Pulse period     10ms
+*           - Pulse width      1ms ... 2ms
+*           - Pre-scaler:      72d    -> 1 MHz count freq
+*           - Auto-reload:     10000d -> 10 ms 
+*           - Output           active low, edge-aligned
+*           - Up-counting
+*
+*  LEDs for indicating/measuring activity/timing of certain functions:
+*  LED10     - Blinking only
+*  LED11     - Position feedback received.
+*  LED12     - Measure Kalman exercution time
+*  LED13     - SETTING MODE
+*  LED14     - RUNNING MODE
+*  LED15     - STANBY/TESTING MODE
+*/
