@@ -6,5 +6,5 @@ The complete source code of STM32F3 and matlab GUI code are posted here for shar
 Good luck and have fun!
 Chuong Nguyen
 
-Edit By Duong
+Edit By Duong, Edit gain by Chuong
 
