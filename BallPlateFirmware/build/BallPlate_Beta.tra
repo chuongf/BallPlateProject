@@ -1,0 +1,33 @@
+*** Creating Trace Output File '.\build\BallPlate_Beta.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '".\build\startup_stm32f10x_md.o"'
+### List of Objects: adding '".\build\kalmanlib2.o"'
+### List of Objects: adding '".\build\main.o"'
+### List of Objects: adding '".\build\controller.o"'
+### List of Objects: adding '".\build\estimation.o"'
+### List of Objects: adding '".\build\service_com.o"'
+### List of Objects: adding '".\build\service_led.o"'
+### List of Objects: adding '".\build\service_servo.o"'
+### List of Objects: adding '".\build\stm32_gpio.o"'
+### List of Objects: adding '".\build\stm32_pwm.o"'
+### List of Objects: adding '".\build\stm32_usart.o"'
+### List of Objects: adding '".\build\usart_retarget.o"'
+### List of Objects: adding '".\build\core_cm3.o"'
+### List of Objects: adding '".\build\stm32_init.o"'
+### List of Objects: adding '".\build\system_stm32f10x.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M3 ".\build\startup_stm32f10x_md.o" ".\build\kalmanlib2.o" ".\build\main.o" ".\build\controller.o" ".\build\estimation.o" ".\build\service_com.o" ".\build\service_led.o" ".\build\service_servo.o" ".\build\stm32_gpio.o" ".\build\stm32_pwm.o" ".\build\stm32_usart.o" ".\build\usart_retarget.o" ".\build\core_cm3.o" ".\build\stm32_init.o" ".\build\system_stm32f10x.o" 
+--ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\BallPlate_Beta.map" -o .\build\BallPlate_Beta.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: '.\build\BallPlate_Beta.axf'
+### ADS-LD Command File: '.\build\BallPlate_Beta.lnp'
+### Checking for dirty Components...
+### Creating CmdFile '.\build\BallPlate_Beta.lnp', Handle=0x00000874
+### Writing '.lnp' file
+### ADS-LD Command file '.\build\BallPlate_Beta.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

@@ -1,0 +1,11 @@
+.\build\service_servo.o: Service\service_servo.c
+.\build\service_servo.o: .\Service\service_servo.h
+.\build\service_servo.o: .\Driver\stm32_pwm.h
+.\build\service_servo.o: .\Hardware\stm32f10x.h
+.\build\service_servo.o: .\CMSIS\core_cm3.h
+.\build\service_servo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\build\service_servo.o: .\CMSIS\system_stm32f10x.h
+.\build\service_servo.o: .\Hardware\platform_cfg.h
+.\build\service_servo.o: .\Hardware\BallPlate_Plant.h
+.\build\service_servo.o: .\Application\UserDef.h
+.\build\service_servo.o: .\Hardware\BallPlate_Plant.h

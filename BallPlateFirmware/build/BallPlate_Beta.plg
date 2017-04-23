@@ -1,0 +1,566 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+H:\Kalman\STM32F10xFW_Beta_200317\BallPlate_Beta.uvproj
+Project File Date:  03/14/2017
+
+<h2>Output:</h2>
+Build target 'BallPlate_KF'
+assembling startup_stm32f10x_md.s...
+compiling KalmanLib2.c...
+compiling main.c...
+Application\Estimation.h(13): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_INOUT" is undefined
+Application\main.c(158): error:  #20: identifier "SS_CNTRL" is undefined
+Application\main.c(158): error:  #20: identifier "CTRL" is undefined
+Application\main.c(159): error:  #20: identifier "SS_MODEL" is undefined
+Application\main.c(159): error:  #20: identifier "MODEL" is undefined
+Application\main.c(160): error:  #20: identifier "SS_EST" is undefined
+Application\main.c(160): error:  #20: identifier "STATES" is undefined
+Application\main.c(161): error:  #20: identifier "SS_INOUT" is undefined
+Application\main.c(161): error:  #20: identifier "INOUT" is undefined
+Application\main.c(188): error:  #167: argument of type "uint32_t" is incompatible with parameter of type "<error-type> *"
+Application\main.c(188): error:  #165: too few arguments in function call
+Application\main.c(195): error:  #20: identifier "i" is undefined
+Application\main.c(197): warning:  #223-D: function "USART2GetKey" declared implicitly
+Application\main.c(209): error:  #20: identifier "KfUpd_Flg" is undefined
+Application\main.c(210): error:  #20: identifier "KfEst_Flg" is undefined
+compiling Controller.c...
+Application\Controller.h(74): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.c(12): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.c(12): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.c(12): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(22): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(22): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(35): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(35): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(35): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(36): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(36): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(37): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(37): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(51): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(53): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(56): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(58): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(65): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.c(65): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.c(65): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.c(74): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(74): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(75): error:  #132: expression must have pointer-to-struct-or-union type
+compiling Estimation.c...
+Application\Estimation.h(13): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.c(14): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(14): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(15): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(15): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(17): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(17): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(18): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(18): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(24): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(24): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(24): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(24): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(32): error:  #20: identifier "SS_CNTRL" is undefined
+compiling service_com.c...
+compiling service_led.c...
+compiling service_servo.c...
+compiling stm32_gpio.c...
+compiling stm32_pwm.c...
+compiling stm32_usart.c...
+compiling usart_retarget.c...
+compiling core_cm3.c...
+compiling STM32_Init.c...
+compiling system_stm32f10x.c...
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\SSTypeDef.h(96): error:  #20: identifier "k" is undefined
+Application\SSTypeDef.h(96): error:  #65: expected a ";"
+Application\SSTypeDef.h(105): warning:  #12-D: parsing restarts here after previous syntax error
+Application\Estimation.h(13): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_INOUT" is undefined
+Application\main.c(158): error:  #20: identifier "SS_CNTRL" is undefined
+Application\main.c(158): error:  #20: identifier "CTRL" is undefined
+Application\main.c(159): error:  #20: identifier "SS_MODEL" is undefined
+Application\main.c(159): error:  #20: identifier "MODEL" is undefined
+Application\main.c(160): error:  #20: identifier "SS_EST" is undefined
+Application\main.c(160): error:  #20: identifier "STATES" is undefined
+Application\main.c(161): error:  #20: identifier "SS_INOUT" is undefined
+Application\main.c(161): error:  #20: identifier "INOUT" is undefined
+Application\main.c(188): error:  #167: argument of type "uint32_t" is incompatible with parameter of type "<error-type> *"
+Application\main.c(188): error:  #165: too few arguments in function call
+Application\main.c(195): error:  #20: identifier "i" is undefined
+Application\main.c(197): warning:  #223-D: function "USART2GetKey" declared implicitly
+Application\main.c(209): error:  #20: identifier "KfUpd_Flg" is undefined
+Application\main.c(210): error:  #20: identifier "KfEst_Flg" is undefined
+compiling Controller.c...
+Application\SSTypeDef.h(96): error:  #20: identifier "k" is undefined
+Application\SSTypeDef.h(96): error:  #65: expected a ";"
+Application\SSTypeDef.h(105): warning:  #12-D: parsing restarts here after previous syntax error
+Application\Controller.h(74): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(74): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.h(75): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.c(12): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.c(12): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.c(12): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(22): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(22): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(35): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(35): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(35): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(36): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(36): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(37): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(37): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(51): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(53): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(56): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(58): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Controller.c(65): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Controller.c(65): error:  #20: identifier "SS_EST" is undefined
+Application\Controller.c(65): error:  #20: identifier "SS_INOUT" is undefined
+Application\Controller.c(74): error:  #132: expression must have pointer-to-struct-or-union type
+compiling Estimation.c...
+Application\SSTypeDef.h(96): error:  #20: identifier "k" is undefined
+Application\SSTypeDef.h(96): error:  #65: expected a ";"
+Application\SSTypeDef.h(105): warning:  #12-D: parsing restarts here after previous syntax error
+Application\Estimation.h(13): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(13): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.h(17): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_CNTRL" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_MODEL" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_EST" is undefined
+Application\Estimation.c(11): error:  #20: identifier "SS_INOUT" is undefined
+Application\Estimation.c(14): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(14): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(15): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(15): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(17): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(17): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(18): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(18): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(21): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(24): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(24): error:  #132: expression must have pointer-to-struct-or-union type
+Application\Estimation.c(24): error:  #132: expression must have pointer-to-struct-or-union type
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\main.c(188): error:  #167: argument of type "uint32_t" is incompatible with parameter of type "SS_CNTRL *"
+Application\main.c(188): error:  #165: too few arguments in function call
+Application\main.c(195): error:  #20: identifier "i" is undefined
+Application\main.c(197): warning:  #223-D: function "USART2GetKey" declared implicitly
+Application\main.c(209): error:  #20: identifier "KfUpd_Flg" is undefined
+Application\main.c(210): error:  #20: identifier "KfEst_Flg" is undefined
+compiling Controller.c...
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+compiling Estimation.c...
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(117): warning:  #9-D: nested comment is not allowed
+Application\SSTypeDef.h(118): warning:  #9-D: nested comment is not allowed
+Application\main.c(188): error:  #167: argument of type "uint32_t" is incompatible with parameter of type "SS_CNTRL *"
+Application\main.c(188): error:  #165: too few arguments in function call
+Application\main.c(195): error:  #20: identifier "i" is undefined
+Application\main.c(197): warning:  #223-D: function "USART2GetKey" declared implicitly
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(188): error:  #167: argument of type "uint32_t" is incompatible with parameter of type "SS_CNTRL *"
+Application\main.c(188): error:  #165: too few arguments in function call
+Application\main.c(195): error:  #20: identifier "i" is undefined
+Application\main.c(197): warning:  #223-D: function "USART2GetKey" declared implicitly
+compiling Controller.c...
+compiling Estimation.c...
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(159): warning:  #370-D: variable "xAxis" has an uninitialized const field
+Application\main.c(160): warning:  #370-D: variable "yAxis" has an uninitialized const field
+Application\main.c(205): warning:  #223-D: function "checkTransfer" declared implicitly
+compiling Controller.c...
+compiling Estimation.c...
+compiling service_com.c...
+linking...
+.\build\BallPlate_Beta.axf: Error: L6218E: Undefined symbol checkTransfer (referred from main.o).
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(159): warning:  #370-D: variable "xAxis" has an uninitialized const field
+Application\main.c(160): warning:  #370-D: variable "yAxis" has an uninitialized const field
+Application\main.c(205): error:  #167: argument of type "uint8_t (*)[11]" is incompatible with parameter of type "uint8_t *"
+compiling service_com.c...
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(159): warning:  #370-D: variable "xAxis" has an uninitialized const field
+Application\main.c(160): warning:  #370-D: variable "yAxis" has an uninitialized const field
+linking...
+Program Size: Code=5616 RO-data=268 RW-data=60 ZI-data=2708  
+".\build\BallPlate_Beta.axf" - 0 Error(s), 2 Warning(s).
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(159): error:  #29: expected an expression
+Application\main.c(159): error:  #29: expected an expression
+Application\main.c(159): error:  #29: expected an expression
+Application\main.c(159): error:  #29: expected an expression
+Application\main.c(160): error:  #29: expected an expression
+Application\main.c(160): error:  #29: expected an expression
+Application\main.c(160): error:  #29: expected an expression
+Application\main.c(161): error:  #29: expected an expression
+Application\main.c(161): error:  #29: expected an expression
+Application\main.c(162): error:  #29: expected an expression
+Application\main.c(162): error:  #29: expected an expression
+Application\main.c(162): error:  #29: expected an expression
+Application\main.c(163): error:  #29: expected an expression
+Application\main.c(163): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(171): error:  #29: expected an expression
+compiling Controller.c...
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(65): error:  #29: expected an expression
+Application\main.c(65): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(164): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(172): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(165): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(166): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(167): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(168): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(169): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(170): error:  #29: expected an expression
+Application\main.c(171): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(173): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(174): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(175): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Application\main.c(177): error:  #29: expected an expression
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(167): error:  #67: expected a "}"
+Application\main.c(167): error:  #67: expected a "}"
+Application\main.c(173): error:  #146: too many initializer values
+Application\main.c(176): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Application\main.c(176): error:  #29: expected an expression
+Application\main.c(177): error:  #29: expected an expression
+Application\main.c(177): error:  #29: expected an expression
+Application\main.c(177): error:  #29: expected an expression
+Application\main.c(178): error:  #29: expected an expression
+Application\main.c(178): error:  #29: expected an expression
+Application\main.c(179): error:  #29: expected an expression
+Application\main.c(179): error:  #29: expected an expression
+Application\main.c(179): error:  #29: expected an expression
+Application\main.c(180): error:  #29: expected an expression
+Application\main.c(180): error:  #29: expected an expression
+Application\main.c(181): error:  #29: expected an expression
+Application\main.c(181): error:  #29: expected an expression
+Application\main.c(182): error:  #29: expected an expression
+Application\main.c(182): error:  #29: expected an expression
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(228): error:  #154: expression must have struct or union type
+Application\main.c(229): error:  #167: argument of type "SS_SysPar (*)[6]" is incompatible with parameter of type "SS_SysPar *"
+Application\main.c(231): error:  #154: expression must have struct or union type
+Application\main.c(232): error:  #167: argument of type "SS_SysPar (*)[6]" is incompatible with parameter of type "SS_SysPar *"
+Application\main.c(247): error:  #154: expression must have struct or union type
+Application\main.c(248): error:  #167: argument of type "SS_SysPar (*)[6]" is incompatible with parameter of type "SS_SysPar *"
+Application\main.c(250): error:  #154: expression must have struct or union type
+Application\main.c(251): error:  #167: argument of type "SS_SysPar (*)[6]" is incompatible with parameter of type "SS_SysPar *"
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(167): error:  #67: expected a "}"
+Application\main.c(167): error:  #67: expected a "}"
+Application\main.c(173): error:  #146: too many initializer values
+Application\main.c(175): error:  #67: expected a "}"
+Application\main.c(175): error:  #67: expected a "}"
+Application\main.c(181): error:  #146: too many initializer values
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(184): error:  #29: expected an expression
+Application\main.c(184): error:  #29: expected an expression
+Application\main.c(184): error:  #29: expected an expression
+Application\main.c(184): error:  #29: expected an expression
+Application\main.c(185): error:  #29: expected an expression
+Application\main.c(185): error:  #29: expected an expression
+Application\main.c(185): error:  #29: expected an expression
+Application\main.c(186): error:  #29: expected an expression
+Application\main.c(186): error:  #29: expected an expression
+Application\main.c(187): error:  #29: expected an expression
+Application\main.c(187): error:  #29: expected an expression
+Application\main.c(187): error:  #29: expected an expression
+Application\main.c(188): error:  #29: expected an expression
+Application\main.c(188): error:  #29: expected an expression
+Application\main.c(189): error:  #29: expected an expression
+Application\main.c(189): error:  #29: expected an expression
+Application\main.c(190): error:  #29: expected an expression
+Application\main.c(190): error:  #29: expected an expression
+Application\main.c(228): error:  #20: identifier "xAxis" is undefined
+Application\main.c(247): error:  #20: identifier "xAxis" is undefined
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(167): error:  #67: expected a "}"
+Application\main.c(167): error:  #67: expected a "}"
+Application\main.c(173): error:  #146: too many initializer values
+Application\main.c(231): error:  #20: identifier "yAxis" is undefined
+Application\main.c(250): error:  #20: identifier "yAxis" is undefined
+Target not created
+Build target 'BallPlate_KF'
+compiling main.c...
+Application\main.c(167): error:  #67: expected a "}"
+Application\main.c(173): error:  #146: too many initializer values
+Application\main.c(231): error:  #20: identifier "yAxis" is undefined
+Application\main.c(250): error:  #20: identifier "yAxis" is undefined
+compiling Controller.c...
+Target not created

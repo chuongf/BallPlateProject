@@ -1,0 +1,19 @@
+--cpu Cortex-M3
+".\build\startup_stm32f10x_md.o"
+".\build\main.o"
+".\build\controller.o"
+".\build\estimation.o"
+".\build\service_com.o"
+".\build\service_led.o"
+".\build\kalmanlib2.o"
+".\build\usart_retarget.o"
+".\build\kalmanlib3.o"
+".\build\stm32_gpio.o"
+".\build\stm32_pwm.o"
+".\build\stm32_usart.o"
+".\build\core_cm3.o"
+".\build\stm32_init.o"
+".\build\system_stm32f10x.o"
+--ro-base 0x08000000 --entry 0x08000000 --rw-base 0x20000000 --entry Reset_Handler --first __Vectors --strict --summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\BallPlate_Beta.map" -o .\build\BallPlate_Beta.axf

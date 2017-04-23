@@ -1,0 +1,93 @@
+#include "BallPlate_Plant.h"
+#include "stdint.h"
+/**
+*  ***********************************************************************
+*  @file    UserDef.h
+*  @author  Chuong Nguyen 
+*  @version V1.00
+*  @brief   Define structure, macro, constant...
+*
+**************************************************************************
+*/
+#ifndef __USER_DEF__
+#define __USER_DEF__
+
+
+/** Feature options
+*/
+//#define     Extrapolation
+//#define     Test_Kalman
+
+
+/** Modeling
+*/
+#define   _SYS_2ND_ORDER_KF_
+//#define   _SYS_3RD_ORDER_KF_
+
+/** Model Unit
+*/
+#define _SYS_PXL_DEG
+//#define _SYS_MET_RAD
+//#define _SYS_PXL_RAD
+
+
+
+
+#if defined _SYS_2ND_ORDER_KF_
+  #define ORDER 2
+  
+#elif defined _SYS_3RD_ORDER_KF_
+  #define ORDER 3
+
+#else
+  #error "Define one of '_SYS_2ND_ORDER_KF_' or '_SYS_3RD_ORDER_KF_'"
+#endif
+
+
+/** Struct for complete state-space representation of an Axis.
+*
+*/
+typedef struct SS_SysPar // State space parameters
+{
+  // state space representation of model.
+  float       Model_F[ORDER][ORDER];    //!< Transition Matrix
+  float       Model_G[ORDER];           //!< Input Matrix 
+  const float Model_C[ORDER];           //!< Measurement Matrix
+  const float Model_H[ORDER];           //!< Transpose of C Matrix
+  
+  // Kalman estimation
+  float       KF_X[ORDER];              // states estimation
+//float       KF_XU[ORDER];             // states updating
+  float       KF_PP[ORDER][ORDER];      // vairance of states
+  float       KF_PU[ORDER][ORDER];      // vairance of states
+  float       KF_K[ORDER]; 				      // kalman gain
+  const float KF_Q[ORDER][ORDER];       //!< Variance of modeling
+  const float KF_R;                     //!< Variance of measurement
+  
+  // state space controller.
+  float       Ctrl_Ts;                  //!< sampling time [second]
+  float       Ctrl_K[ORDER];            //!< full state feedback gain vector
+  float       Ctrl_V;                   //!< Pre-filter 
+  float       Ctrl_RefPosMet;           //!< Reference input [meter]
+  int16_t     Ctrl_RefPosPxl;           //!< Reference input [pixel]
+  float       Ctrl_OutAngleRad;         //!< control output value [rad]
+  float       Ctrl_OutAngleDeg;         //!< control output value [deg]
+  
+  // plant input (plate angle) and output (ball position).
+  float       Plant_InAngleRad;         //!< input        [Rad]
+  float       Plant_InAngleDeg;         //!< input        [Degree]
+  int16_t     Plant_InAnglePWM;         //!< input        [PWM duty for servo]
+  int16_t     Plant_OffsetPWM;          //!< offset of servo to have plate balanced
+  int8_t      Plant_ServoDir;           //!< servo inverse (-1) or not (1)
+  
+  int16_t     Plant_OutOldPosPxl;       //!< current measured position [pxl]
+  int16_t     Plant_OutPosPxl;          //!< current measured position [pxl]
+  float       Plant_OutPosMet;          //!< current measured position [m]
+
+  // ball speed by backward difference
+  int32_t     Cal_SpeedPxlPerSec;       //!< current measured position [pxl]
+  
+} SS_SysPar;
+
+
+#endif

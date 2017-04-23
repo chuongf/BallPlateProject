@@ -1,0 +1,141 @@
+#include "BallPlate_Plant.h"
+/**
+*  ***********************************************************************
+*  @file    main.h
+*  @author  Chuong Nguyen 
+*  @version V1.00
+*  @brief   State Space controller for 2nd and 3rd order system.
+*
+**************************************************************************
+*/
+#ifndef __SS_TYPDEFS__
+#define __SS_TYPDEFS__
+
+#if defined _SYS_2ND_ORDER_KF_
+  #define ORDER 2
+  
+#elif defined _SYS_3RD_ORDER_KF_
+  #define ORDER 3
+
+#else
+  #error "Define one of '_SYS_2ND_ORDER_KF_' or '_SYS_3RD_ORDER_KF_'"
+#endif
+
+/** Struct for complete state-space representation of an Axis.
+*
+*/
+typedef struct SS_SysPar // State space parameters
+{
+  // state space representation of model.
+  float Model_F[ORDER][ORDER];     //!< Transition Matrix
+  float Model_G[ORDER];           //!< Input Matrix 
+  const float Model_C[ORDER];           //!< Measurement Matrix
+  const float Model_H[ORDER];           //!< Transpose of C Matrix
+  
+  // Kalman estimation
+  float  KF_X[ORDER];          // states estimation
+  float  KF_P[ORDER][ORDER];   // vairance of states
+  float  KF_K[ORDER]; 				 // kalman gain
+  const float KF_Q[ORDER][ORDER];     //!< Variance of modeling
+  const float KF_R;                  //!< Variance of measurement
+  
+  // state space controller.
+  float Ctrl_Ts;                      //!< sampling time [second]
+  const float Ctrl_K[ORDER];           //!< full state feedback gain vector
+  const float Ctrl_V;                  //!< Pre-filter 
+  float  Ctrl_OutAngleRad;                   //!< ball plate angle in [rad]
+
+  float  Ctrl_cmdServoAngleRad;        //!< servo actuator angle cmd in [rad]
+  float  Ctrl_cmdServoAnglePWM;        //!< servo actuator angle cmd in [rad]
+  
+  // plant input (plat angle) and output (ball position).
+  short  Plant_InAngleRad;             //!< input        [Rad]
+  float  Plant_InAngleDeg;             //!< input        [Degree]
+  short  Plant_InAnglePWM;             //!< input        [PWM duty for servo]
+  short  Plant_OffsetPWM;              //!< input        [PWM duty for servo]
+  short  Plant_ServoDir;               //!< servo inverse (-1) or not (1)
+  
+  short  Plant_OutOldPosPxl;          //!< current measured position [pxl]
+  short  Plant_OutPosPxl;             //!< current measured position [pxl]
+  float  Plant_OutPosMet;             //!< current measured position [m]
+
+  // ball speed by backward difference
+  short  Cal_SpeedPxlPerSec;          //!< current measured position [pxl]
+  
+} SS_SysPar;
+
+
+///** Struct for state space representation of model.
+//*
+//*/
+
+typedef struct SS_MODEL // State space parameters
+{
+ const float F[ORDER*ORDER];     //!< Transition Matrix
+ const float G[ORDER];           //!< Input Matrix 
+ const float C[ORDER];           //!< Measurement Matrix
+ const float H[ORDER];           //!< Transpose of C Matrix
+ 
+ const float Q[ORDER*ORDER];     //!< Variance of modeling
+ const float R;                  //!< Variance of measurement
+ 
+} SS_MODEL;
+
+
+///** Struct for state space controller.
+//*
+//*/
+
+typedef struct SS_CNTRL // State space parameters
+{
+ float Ts;                      //!< sampling time [second]
+ const float K[ORDER];           //!< full state feedback gain vector
+ const float V;                  //!< Pre-filter 
+ 
+ // control value
+ float  alpha;                   //!< ball plate angle in [rad]
+ float  cmdServoAngleRad;        //!< servo actuator angle cmd in [rad]
+} SS_CNTRL;
+
+
+
+/** Struct for state estimation (this project uses Kalman estimation).
+*  Current [k] and Estimated [k+1] state vectors.
+*  index 0: position of the ball in [m]
+*  index 1: speed of the ball in [m/s]
+*  index 2: motor angle (ONLY FOR ORDER == 3)
+*/
+
+typedef struct SS_EST // State space Variables
+{
+ 
+ float  vStateEst_k[ORDER];      // states estimation
+ float  vStateEst_k1[ORDER];
+
+ float  vVarianceEst_k[ORDER*ORDER];   // vairance of states
+ float  vVarianceEst_k1[ORDER*ORDER];
+ 
+ float  kfgain[ORDER];      // kalman gain
+  
+} SS_EST;
+
+
+/** Struct for input reference and output measurement.
+*
+*/
+
+typedef struct SS_INOUT // State space Variables
+{
+// Reference (In)
+ short  posRefPxl;           //!< reference position        [pxl]
+ float  posRef;              //!< reference position        [m]
+ 
+ 
+ // ball positions measurement (Out)
+ short  posMeasPxl;          //!< current measured position [pxl]
+ short  posOldPxl;           //!< last measured position    [pxl]
+ float  posMeas;             //!< current measured position [m]
+   
+} SS_INOUT;
+
+#endif
